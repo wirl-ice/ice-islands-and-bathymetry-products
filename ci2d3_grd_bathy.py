@@ -153,7 +153,7 @@ etopo_crs = 'EPSG:4326'   #EPSG code for the ETOPO1 projection
 
 os.chdir(indir)
 
-print(f'Analyis based on a maximun ice draft calculated with {sd} standard devations from the mean of thickness \n')
+print(f'Analysis based on a maximum ice draft calculated with {sd} standard deviations from the mean of thickness \n')
 
 ######  VECTOR DATA
 ii = gpd.read_file(ci2d3)
@@ -424,3 +424,16 @@ print(f"The minimum of all event minimum clearances for TID direct is {grd_event
 print(f"The minimum of all event minimum clearances for TID indirect is {grd_events.cl1_ind_mn.min()} m")
 print(f"The minimum of all event minimum clearances for TID unknown is {grd_events.cl1_unk_mn.min()} m")
 
+#TODO: 
+
+#There are 2 ice islands that are unnamed, check    
+
+#Check output bmax_max seems to wander
+
+# get rid of FutureWarning from output
+
+# format output table Something like:
+#Lat, lon (of first obs?), issue with IBCAO and/or ETOPO, max percentage of direct pixels if IBCAO flagged
+#lat, lon, first grounding inst, last grounding inst?, 5sd ice_min, bmax_max, rel_max, min(cl1_dir_mn, cl1_unk_mn), cl1_ind_min. 
+
+#Document table / output fields in README

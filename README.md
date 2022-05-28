@@ -1,4 +1,4 @@
-# ice islands and bathymetry products
+# Ice Islands and Gridded Bathymetry Products
  Code to compare estimates of ice island keel depths to gridded bathymetry products
  
 The main Python script in this repository is a script that determines areas of potenially erroneous bathymetry (too deep) in interpolated gridded bathymetric products.  
@@ -35,7 +35,9 @@ Note this is a scheme to passively determine where bathymetry might be in error,
 2. A csv listing all the ice island grounding events that are named (nicknamed) after the last 3  letters of the inst of the first ice island that was observed to be grounding.  A list of all the ice islands in that grounding follows - eg: 
      nickname,lineage
      QQZ,"['20101022_221241_r2_13_QQZ', '20101026_115942_r2_23_OAQ']"
-
+     
+     Note this file is in the github repo (along with a script to generate it from grounded_lineage_2010.csv and grounded_lineage_2010.csv and grounded_lineage_2012.csv (which are not ideal formats)
+     
 3. IBCAO v4    --  Coverage is North of 64deg only. 
      https://www.gebco.net/data_and_products/gridded_bathymetry_data/arctic_ocean/
      Download the 200x200m grid as geotiff
@@ -51,3 +53,21 @@ Note for both these datasets, assigned the correct projection to the downloaded 
 EPSG 3996 for IBCAO
 EPSG 4326 for ETOPO1
 
+
+# Dependencies
+
+To run this script you will need the following libraries installed in your Python environment. 
+* geopandas
+* rasterio
+* numpy
+
+These can be added using conda like so:
+ conda install geopandas rasterio numpy
+ 
+ 
+# Script outputs
+
+TODO - add some descriptions of the files that the script generates, field names, etc. 
+
+
+ 
