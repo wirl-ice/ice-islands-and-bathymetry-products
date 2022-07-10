@@ -144,9 +144,9 @@ def assignNickname(df, grddf, xn=1):
 ''' MAIN '''        
 # parameters
 
-run = 'sd6' # enter the name of the run (label how you wish)
-description = "Run based on calculation of Kd with mean +/- 6 x SD"  # enter notes
-sd = 6   # the number of standard deviations for max draft estimate.
+#run = 'sd6' # enter the name of the run (label how you wish)
+#description = "Run based on calculation of Kd with mean +/- 6 x SD"  # enter notes
+#sd = 6   # the number of standard deviations for max draft estimate.
 
 #run = 'mm' # enter the name of the run (label how you wish)
 #description = "Run based on the Muenchow max thickness"  # enter notes
@@ -156,20 +156,25 @@ sd = 6   # the number of standard deviations for max draft estimate.
 #description = "Run based on the Muenchow max thickness x 50%"  # enter notes
 #sd = 0   # the number of standard deviations for max draft estimate.
 
+run = 'mm25' # enter the name of the run (label how you wish)
+description = "Run based on the Muenchow max thickness x 25%"  # enter notes
+sd = 0   # the number of standard deviations for max draft estimate.
 
 # if you want to specify the Kd (max keel depth) for a given calving year, that can be done here
 # change these from 0 to whatever value you wish (negative numbers for Kd)
 specify_Kd_2008 = 0
-specify_Kd_2010 = 0
-specify_Kd_2012 = 0
+#specify_Kd_2010 = 0
+#specify_Kd_2012 = 0
 #specify_Kd_2010 = -1*thick2draft(108, rho_i=917, rho_w=1025)
 #specify_Kd_2012 = -1*thick2draft(228, rho_i=917, rho_w=1025)
 #specify_Kd_2010 = -1*thick2draft(108*1.5, rho_i=917, rho_w=1025)
 #specify_Kd_2012 = -1*thick2draft(228*1.5, rho_i=917, rho_w=1025)
+specify_Kd_2010 = -1*thick2draft(108*1.25, rho_i=917, rho_w=1025)
+specify_Kd_2012 = -1*thick2draft(228*1.25, rho_i=917, rho_w=1025)
 
 # Files and directories
-indir = '<name of working dir>'  # directory that contains all input files
-outdir = f'<name of working dir>/{run}'  # directory for script output
+indir = '<working directory>'  # directory that contains all input files
+outdir = f'<working directory>\\{run}'  # directory for script output
 
 ci2d3 = 'CI2D3_v01.1_selected.shp'     # shapefile containing ci2d3 data
 lineagefile = 'grounded_lineage.csv'  # a csv with all the names of ice islands that are grounded (more than once)
@@ -545,9 +550,9 @@ grd_events = grd_events.round(decimals=3)
 grd_events = gpd.GeoDataFrame(grd_events, geometry='geometry')    
 grd_events = grd_events.sort_values(['nickname'])
 
-grd_events.to_file('ci2d3_grd_events_etopo_sd{}.shp'.format(sd))
+grd_events.to_file('ci2d3_grd_events_etopo_{}.shp'.format(run))
 grd_events=grd_events.loc[:, grd_events.columns != 'geometry']    
-grd_events.to_csv('ci2d3_grd_events_etopo_sd{}.csv'.format(sd))
+grd_events.to_csv('ci2d3_grd_events_etopo_{}.csv'.format(run))
 
 print("\nSummary of run: \n")
 print(f"Total grounding events with ETOPO issues: {len(grd_events)}")
