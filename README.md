@@ -143,7 +143,8 @@ The second is a summary table that aggregates the above table by grounding event
 The second is a summary table that aggregates the above table by grounding event.  
  Note that this only outputs events based on the ETOPO issues
 
-* This table has the same columns as the one above
+* This table has the same columns as the one above to Bshall_mx; the remainder have no equivalent in ETOPO and are therefore not included. 
+
 
 ## Other outputs
 

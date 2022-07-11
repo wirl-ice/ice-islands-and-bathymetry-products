@@ -174,7 +174,7 @@ specify_Kd_2012 = -1*thick2draft(228*1.25, rho_i=917, rho_w=1025)
 
 # Files and directories
 indir = '<working directory>'  # directory that contains all input files
-outdir = f'<working directory>\\{run}'  # directory for script output
+outdir = os.path.join(indir,f'{run}')  # directory for script output
 
 ci2d3 = 'CI2D3_v01.1_selected.shp'     # shapefile containing ci2d3 data
 lineagefile = 'grounded_lineage.csv'  # a csv with all the names of ice islands that are grounded (more than once)
@@ -524,25 +524,10 @@ grd_events = grd_summary.groupby(['nickname']).agg(
     lat=('lat', 'first'),
     lon=('lon', 'first'),
     Kd =('Kd', 'mean'),
-    Bshall_mx =('Bshall', 'max'),
-    Bshall_av =('Bshall', 'mean'),
-    Bshall_mn =('Bshall', 'min'),
-    rel_mx =('reliablefr', 'max'),  # the max of all reliable fractions
-    rel_av =('reliablefr', 'mean'),
-    rel_mn =('reliablefr', 'min'),
-    C_dir_mx=('C_direct', 'max'),  # the max of all clearances  
-    C_ind_mx=('C_indir', 'max'), 
-    C_unk_mx=('C_unkn', 'max'),
-    C_dir_av=('C_direct', 'mean'),  # the mean of all clearances
-    C_ind_av=('C_indir', 'mean'), 
-    C_unk_av=('C_unkn', 'mean'),
-    C_dir_mn=('C_direct', 'min'), # the min of all clearances
-    C_ind_mn=('C_indir', 'min'), 
-    C_unk_mn=('C_unkn', 'min'),
-    BsTID_rel=('Bshall_TID', 'sum')
+    Bshall_mx =('eBshall', 'max'),
+    Bshall_av =('eBshall', 'mean'),
+    Bshall_mn =('eBshall', 'min')
     )
-
-grd_events['BsTID_rel'] = grd_events['BsTID_rel']/grd_events['count']
 
 grd_events = grd_events.round(decimals=3)
 
